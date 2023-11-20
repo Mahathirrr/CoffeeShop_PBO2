@@ -3,6 +3,7 @@ package gui;/*
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 
+import app.CoffeeShopCalculator;
 import menu.CoffeeShopItem;
 
 import javax.swing.*;
@@ -22,6 +23,7 @@ public class Dashboard extends javax.swing.JFrame {
     private int x = 0;
     private double tax = 0.0;
     private CoffeeShopItem[] items;
+    private final CoffeeShopCalculator calculator = new CoffeeShopCalculator();
 
     public Dashboard() {
         initComponents();
@@ -1759,7 +1761,7 @@ public class Dashboard extends javax.swing.JFrame {
             }
             double price = qty * items[index].getPrice();
             total += price;
-            getTax(total);
+            tax = calculator.calculateTax(total);
             jTextArea.setText(jTextArea.getText() + x + ". " + label.getText() + "\t\t\t" + String.format("%.2f", price) + "\n");
             dudate();
         } else {
@@ -1912,11 +1914,6 @@ public class Dashboard extends javax.swing.JFrame {
                 + "Purchase Id: " + purchaseId + "\n"
                 + "****************************************************\n"
                 + "Item Name:\t\t\t" + "Price(K)\n");
-    }
-
-    public void getTax(double t) {
-        // kasih pajak 11 persen
-
     }
 
     public void dudate() {
